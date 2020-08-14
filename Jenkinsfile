@@ -11,13 +11,13 @@ pipeline {
         						 // La clausula dir hace que todas las instrucciones se 
         						 // ejecuten relativas a ese directorio. 
         						dir('worker'){ 
-        							sh 'docker build -t devopsutec.azurecr.io/melmac-voteapp-worker:22 .'
+        							sh 'docker build -t devopsutec.azurecr.io/melmac-voteapp-worker:${BUILD_NUMBER} .'
         							}
         						dir('result'){
-        							sh 'docker build -t devopsutec.azurecr.io/melmac-voteapp-results:4 .' 
+        							sh 'docker build -t devopsutec.azurecr.io/melmac-voteapp-results:${BUILD_NUMBER} .' 
         							}
         						dir('vote'){
-        							sh 'docker build -t devopsutec.azurecr.io/melmac-voteapp-vote:3 .'
+        							sh 'docker build -t devopsutec.azurecr.io/melmac-voteapp-vote:${BUILD_NUMBER} .'
         							}
 						    } 
 				    	}
