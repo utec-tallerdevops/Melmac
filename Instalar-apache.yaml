@@ -1,0 +1,21 @@
+- hosts: apache
+
+  tasks:
+    - name: instalar update apache
+          name: -y httpd
+          state: present
+
+    - name: Iniciar el servicio/demonio y asegurarnos que inicie al bootear
+      service:
+              name: httpd
+              state: started
+              enabled: true
+    - name: Abrir puerto 80 acceso http
+      firewalld:
+              service: http
+              permanent: true
+              state: enabled
+    - name: Reiniciar firewalld para cargar los cambios
+      service: 
+          name: firewalld 
+          state: restarted
